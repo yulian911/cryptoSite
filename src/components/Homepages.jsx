@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import millify from "millify";
 import { Typography, Row, Col, Statistic } from "antd";
 import { Link } from "react-router-dom";
@@ -8,9 +8,8 @@ import { Cryptocurrencies, News } from "../components";
 const { Title } = Typography;
 
 const Homepages = () => {
-  const { data, isFetching } = useGetCryptosQuery();
+  const { data, isFetching } = useGetCryptosQuery(10);
   console.log(data);
-
   const globalStats = data?.data?.stats;
 
   if (isFetching) {
@@ -58,7 +57,7 @@ const Homepages = () => {
           Top 10 cryptocuriencies in the world
         </Title>
         <Title level={3} className="show-more">
-          <Link to="/cryptocurriencies">Show More</Link>
+          <Link to="/cryptocurrencies">Show More</Link>
         </Title>
       </div>
       <Cryptocurrencies simplified />
